@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<Stats>
+
+
+  <GeneralData>
+    
+  </GeneralData>
+  <SongScores>
+    <Song Dir='MyMusic'>
+      <Steps>
+        <HighScoreList>
+          <HighScore>
+            <TapNoteScores>
+            </TapNoteScores>
+            <RadarValues>
+            </RadarValues>
+            <HoldNoteScores>
+              
+            </HoldNoteScores>
+          </HighScore>
+        </HighScoreList>
+      </Steps>
+    </Song>
+    <Song Dir='MyMusic'>
+      <Steps>
+        <HighScoreList>
+          <HighScore>
+            <TapNoteScores>
+            </TapNoteScores>
+            <RadarValues>
+            </RadarValues>
+            <HoldNoteScores>
+
+            </HoldNoteScores>
+          </HighScore>
+        </HighScoreList>
+      </Steps>
+    </Song>
+  </SongScores>
+</Stats>
