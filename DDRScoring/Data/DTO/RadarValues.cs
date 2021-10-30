@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DDRScoring.Models
+namespace DDRScoring.Data.DTO
 {
 	[XmlRoot(ElementName = "RadarValues")]
 	public class RadarValues

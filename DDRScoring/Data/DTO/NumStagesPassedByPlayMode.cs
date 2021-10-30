@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DDRScoring.Models
+namespace DDRScoring.Data.DTO
 {
-	[XmlRoot(ElementName = "NumSongsPlayedByPlayMode")]
-	public class NumSongsPlayedByPlayMode
+	[XmlRoot(ElementName = "NumStagesPassedByPlayMode")]
+	public class NumStagesPassedByPlayMode
 	{
 		[XmlElement(ElementName = "Regular")]
 		public string Regular { get; set; }
 	}
-
 }
