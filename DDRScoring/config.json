@@ -1,0 +1,5 @@
+{
+	"ConnectionStrings": {
+		"DDRScoringContextDb": "Data Source=DESKTOP-GS6C5S7;Initial Catalog=DDRScoringDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true;"
+	}
+}
