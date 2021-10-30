@@ -11,7 +11,7 @@ namespace DDRScoring.Models
 	public class HighScoreList
 	{
 		[XmlElement(ElementName = "NumTimesPlayed")]
-		public string NumTimesPlayed { get; set; }
+		public long NumTimesPlayed { get; set; }
 		[XmlElement(ElementName = "LastPlayed")]
 		public string LastPlayed { get; set; }
 		[XmlElement(ElementName = "HighGrade")]

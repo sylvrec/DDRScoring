@@ -1,34 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-namespace DDRScoring.Models
+namespace DDRScoring.Data.Entities
 {
-	[XmlRoot(ElementName = "TapNoteScores")]
+	[Table("TapNoteScores")]
+	[DataContract]
 	public class TapNoteScores
-	{
-		[XmlElement(ElementName = "HitMine")]
+    {
+		[DataMember]
+		[Key]
+        public long Id { get; set; }
+
+		[DataMember]
 		public long HitMine { get; set; }
-		[XmlElement(ElementName = "AvoidMine")]
+
+		[DataMember]
 		public long AvoidMine { get; set; }
-		[XmlElement(ElementName = "CheckpointMiss")]
+
+		[DataMember]
 		public long CheckpointMiss { get; set; }
-		[XmlElement(ElementName = "Miss")]
+
+		[DataMember]
 		public long Miss { get; set; }
-		[XmlElement(ElementName = "W5")]
+
+		[DataMember]
 		public long W5 { get; set; }
-		[XmlElement(ElementName = "W4")]
+
+		[DataMember]
 		public long W4 { get; set; }
-		[XmlElement(ElementName = "W3")]
+
+		[DataMember]
 		public long W3 { get; set; }
-		[XmlElement(ElementName = "W2")]
+
+		[DataMember]
 		public long W2 { get; set; }
-		[XmlElement(ElementName = "W1")]
+
+		[DataMember]
 		public long W1 { get; set; }
-		[XmlElement(ElementName = "CheckpointHit")]
+
+		[DataMember]
 		public long CheckpointHit { get; set; }
 	}
 }
