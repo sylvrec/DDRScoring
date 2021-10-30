@@ -1,4 +1,4 @@
-﻿using DDRScoring.Models;
+﻿using DDRScoring.Data.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

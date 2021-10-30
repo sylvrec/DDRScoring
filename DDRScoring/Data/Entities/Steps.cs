@@ -15,6 +15,9 @@ namespace DDRScoring.Data.Entities
     {
         [DataMember]
         [Key]
+        public long Id { get; set; }
+
+        [DataMember]
         public HighScoreList HigScoreList { get; set; }
         
         [DataMember]
