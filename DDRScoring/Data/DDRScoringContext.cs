@@ -1,4 +1,5 @@
 ﻿using DDRScoring.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DDRScoring.Data
 {
-    public class DDRScoringContext : DbContext
+    public class DDRScoringContext : IdentityDbContext<StoreUser>
     {
         private readonly IConfiguration _config;
 
