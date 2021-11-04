@@ -18,21 +18,27 @@ namespace DDRScoring.Data.Entities
         public long Id { get; set; }
 
 		[DataMember]
-        public decimal Stream { get; set; }
+		[Column(TypeName = "decimal(3,6)")]
+		public decimal Stream { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal Voltage { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal Air { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal Freeze { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal Chaos { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(12,6)")]
 		public decimal Notes { get; set; }
 
 		[DataMember]

@@ -12,8 +12,11 @@ namespace DDRScoring.Data
 {
     public class DDRScoringContext : IdentityDbContext<StoreUser>
     {
-        private readonly IConfiguration _config;
+        public DDRScoringContext(DbContextOptions<DDRScoringContext> options) : base(options)
+        {
+        }
 
+        public DbSet<StoreUser> StoreUser { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Steps> Steps { get; set; }
         public DbSet<Song> Song { get; set; }
@@ -23,16 +26,5 @@ namespace DDRScoring.Data
         public DbSet<TapNoteScores> TapNoteScores { get; set; }
         public DbSet<RadarValues> RadarValues { get; set; }
         public DbSet<CaloriesBurned> CaloriesBurned { get; set; }
-
-        public DDRScoringContext(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:DDRScoringContextDb"]);
-        }
     }
 }

@@ -29,9 +29,11 @@ namespace DDRScoring.Data.Entities
 		public int Score { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal PercentDP { get; set; }
 
 		[DataMember]
+		[Column(TypeName = "decimal(3,6)")]
 		public decimal SurviveSeconds { get; set; }
 
 		[DataMember]
@@ -62,6 +64,7 @@ namespace DDRScoring.Data.Entities
 		public RadarValues RadarValues { get; set; }
 
 		[DataMember]
+		[Column(TypeName="decimal(10,6)")]
 		public decimal LifeRemainingSeconds { get; set; }
 
 		[DataMember]
