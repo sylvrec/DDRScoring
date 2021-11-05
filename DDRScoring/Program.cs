@@ -1,5 +1,8 @@
+using DDRScoring.Data;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,23 +17,39 @@ namespace DDRScoring
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(AddConfiguration)
-                .ConfigureWebHostDefaults(webBuilder =>
+            var host = BuildWebHost(args);
+            if (args.Length > 0)
+            {
+                bool seed = args.Any(arg => arg == "/seed");
+                if (seed)
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
-
-        private static void AddConfiguration(HostBuilderContext ctx, IConfigurationBuilder builder)
-        {
-            builder.Sources.Clear();
-            builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+                    RunSeeding(host);
+                }
+            }
+            else
+            {
+                host.Run();
+            }
         }
+
+        private static void RunSeeding(IWebHost host)
+        {
+            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var seeder = scope.ServiceProvider.GetService<DDRScoringSeeder>();
+                seeder.SeedAsync().Wait();
+            }
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((ctx, builder) => {
+                builder.Sources.Clear();
+                builder.AddJsonFile("config.json", false, true)
+                       .AddEnvironmentVariables();
+            })
+            .UseStartup<Startup>()
+            .Build();
     }
 }
