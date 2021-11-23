@@ -19,7 +19,7 @@ namespace DDRScoring.Data.Entities
         
         [DataMember]
         [Required]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         
         [DataMember]
         [Required]

@@ -28,7 +28,7 @@ namespace DDRScoring.Data.DTO
 		public string PeakComboAward { get; set; }
 		[XmlElement(ElementName = "Modifiers")]
 		public string Modifiers { get; set; }
-		[XmlElement(ElementName = "DateTime")]
+		[XmlElement(ElementName = "DateTime", DataType = "string")] // /!\ dateTime doens't work
 		public string DateTime { get; set; }
 		[XmlElement(ElementName = "PlayerGuid")]
 		public string PlayerGuid { get; set; }

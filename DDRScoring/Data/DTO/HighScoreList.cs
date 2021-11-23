@@ -12,8 +12,8 @@ namespace DDRScoring.Data.DTO
 	{
 		[XmlElement(ElementName = "NumTimesPlayed")]
 		public long NumTimesPlayed { get; set; }
-		[XmlElement(ElementName = "LastPlayed")]
-		public string LastPlayed { get; set; }
+		[XmlElement(ElementName = "LastPlayed", DataType = "date")]
+		public DateTime LastPlayed { get; set; }
 		[XmlElement(ElementName = "HighGrade")]
 		public string HighGrade { get; set; }
 		[XmlElement(ElementName = "HighScore")]

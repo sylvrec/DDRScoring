@@ -60,8 +60,8 @@ namespace DDRScoring.Data.DTO
 		public string GoalSeconds { get; set; }
 		[XmlElement(ElementName = "LastPlayedMachineGuid")]
 		public string LastPlayedMachineGuid { get; set; }
-		[XmlElement(ElementName = "LastPlayedDate")]
-		public string LastPlayedDate { get; set; }
+		[XmlElement(ElementName = "LastPlayedDate", DataType = "date")]
+		public DateTime LastPlayedDate { get; set; }
 		[XmlElement(ElementName = "TotalDancePoints")]
 		public string TotalDancePoints { get; set; }
 		[XmlElement(ElementName = "NumExtraStagesPassed")]

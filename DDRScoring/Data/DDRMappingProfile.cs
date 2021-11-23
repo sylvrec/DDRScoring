@@ -31,9 +31,11 @@ namespace DDRScoring.Data
                 .ForMember(e => e.Id, opt => opt.Ignore());
 
             // HighScore
-            CreateMap<Entities.HighScore, DTO.HighScore>();
+            CreateMap<Entities.HighScore, DTO.HighScore>()
+                .ForMember(d => d.DateTime, opt => opt.MapFrom(src => src.DateTime.ToString()));
             CreateMap<DTO.HighScore, Entities.HighScore>()
-                .ForMember(e => e.Id, opt => opt.Ignore());
+                .ForMember(e => e.Id, opt => opt.Ignore())
+                .ForMember(e => e.DateTime, opt => opt.MapFrom(src => DateTime.Parse(src.DateTime)));
             
             //HoldNoteScore
             CreateMap<Entities.HoldNoteScores, DTO.HoldNoteScores>();

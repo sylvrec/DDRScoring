@@ -21,7 +21,7 @@ namespace DDRScoring.Data.Entities
         public long NumTimesPlayed { get; set; }
 
         [DataMember]
-        public string LastPlayed { get; set; }
+        public DateTime LastPlayed { get; set; }
 
         [DataMember]
         public string HighGrade { get; set; }

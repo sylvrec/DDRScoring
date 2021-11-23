@@ -49,7 +49,7 @@ namespace DDRScoring.Data.Entities
 		public string Modifiers { get; set; }
 
 		[DataMember]
-		public string DateTime { get; set; }
+		public DateTime DateTime { get; set; }
 
 		[DataMember]
         public string PlayerGuid { get; set; }
