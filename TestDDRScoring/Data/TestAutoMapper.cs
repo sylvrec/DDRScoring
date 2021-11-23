@@ -13,7 +13,7 @@ namespace TestDDRScoring.Data
     {
         [TestMethod]
         public void AutoMapperConfigValid()
-        {;
+        {
             var map = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new DDRScoring.Data.DDRMappingProfile());
             });
