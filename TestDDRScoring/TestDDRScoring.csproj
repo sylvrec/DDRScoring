@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Repository\**" />
+    <EmbeddedResource Remove="Data\Repository\**" />
+    <None Remove="Data\Repository\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.11" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
@@ -16,17 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDRScoring\DDRScoring.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="TestDDRScoring.runsettings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Repository\" />
+    <ProjectReference Include="..\DDRScoring\DDRScoring.csproj" />
   </ItemGroup>
 
 </Project>
