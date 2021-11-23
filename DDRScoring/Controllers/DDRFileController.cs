@@ -2,6 +2,7 @@
 using DDRScoring.Data;
 using DDRScoring.Data.DTO;
 using DDRScoring.Data.Entities;
+using DDRScoring.Data.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,19 +30,16 @@ namespace DDRScoring.Controllers
         private readonly ILogger<DDRFileController> _logger;
         private readonly DDRScoringContext _context;
         private readonly IMapper _mapper;
-        private readonly IDDRScoringRepository _repository;
         private readonly UserManager<StoreUser> _userManger;
 
         public DDRFileController(ILogger<DDRFileController> logger,
                                  DDRScoringContext context,
                                  IMapper mapper,
-                                 IDDRScoringRepository repository,
                                  UserManager<StoreUser> userManger)
         {
             _logger = logger;
             _context = context;
             _mapper = mapper;
-            _repository = repository;
             _userManger = userManger;
         }
 

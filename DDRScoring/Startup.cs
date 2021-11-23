@@ -1,5 +1,7 @@
 using DDRScoring.Data;
 using DDRScoring.Data.Entities;
+using DDRScoring.Data.Repository;
+using DDRScoring.Data.Repository.impl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -61,7 +63,7 @@ namespace DDRScoring
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<DDRScoringSeeder>();
-            services.AddTransient<IDDRScoringRepository, DDRScoringRepository>();
+            AddServiceRepository(services);
             services.AddRazorPages();
             services.AddControllers().AddXmlSerializerFormatters();
         }
