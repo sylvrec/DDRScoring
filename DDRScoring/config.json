@@ -1,0 +1,10 @@
+{
+	"ConnectionStrings": {
+		"DDRScoringContextDb": "Data Source=DESKTOP-GS6C5S7;Initial Catalog=DDRScoringDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true;"
+	},
+	"Tokens": {
+		"key": "mRB1)EVd@s_YW5Dd5}bQivR@Y5viX=&u%6X@WBu!ZX",
+		"Issuer": "#",
+		"Audience": "#"
+	}
+}
