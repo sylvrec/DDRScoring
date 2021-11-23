@@ -29,11 +29,11 @@ namespace DDRScoring.Data.Entities
 		public int Score { get; set; }
 
 		[DataMember]
-		[Column(TypeName = "decimal(3,6)")]
+		[Column(TypeName = "decimal(18,10)")]
 		public decimal PercentDP { get; set; }
 
 		[DataMember]
-		[Column(TypeName = "decimal(3,6)")]
+		[Column(TypeName = "decimal(18,10)")]
 		public decimal SurviveSeconds { get; set; }
 
 		[DataMember]
@@ -52,9 +52,15 @@ namespace DDRScoring.Data.Entities
 		public string DateTime { get; set; }
 
 		[DataMember]
-		public string Machine { get; set; }
+        public string PlayerGuid { get; set; }
 
+        [DataMember]
+		public string MachineGuid { get; set; }
+        
 		[DataMember]
+		public int ProductId { get; set; }
+
+        [DataMember]
 		public TapNoteScores TapNoteScores { get; set; }
 
 		[DataMember]
@@ -64,7 +70,7 @@ namespace DDRScoring.Data.Entities
 		public RadarValues RadarValues { get; set; }
 
 		[DataMember]
-		[Column(TypeName="decimal(10,6)")]
+		[Column(TypeName="decimal(18,10)")]
 		public decimal LifeRemainingSeconds { get; set; }
 
 		[DataMember]

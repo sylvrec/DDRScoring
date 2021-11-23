@@ -1,5 +1,6 @@
 using DDRScoring.Data;
 using DDRScoring.Data.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,12 +37,17 @@ namespace DDRScoring
             services.AddIdentity<StoreUser, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
-            })
-                .AddEntityFrameworkStores<DDRScoringContext>();
-            services.AddAuthentication()
-                .AddCookie()
-                .AddJwtBearer(cfg =>
+                cfg.ClaimsIdentity.UserIdClaimType = "UserID";
+            }).AddEntityFrameworkStores<DDRScoringContext>();
+            services.AddAuthentication(cfg =>
+            {
+                cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                cfg.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                cfg.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
                 {
+                    cfg.SaveToken = true;
+                    cfg.RequireHttpsMetadata = false;
                     cfg.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidIssuer = _config["Tokens:Issuer"],
@@ -55,6 +61,7 @@ namespace DDRScoring
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<DDRScoringSeeder>();
+            services.AddTransient<IDDRScoringRepository, DDRScoringRepository>();
             services.AddRazorPages();
             services.AddControllers().AddXmlSerializerFormatters();
         }

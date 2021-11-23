@@ -82,12 +82,12 @@ namespace DDRScoring.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Stream = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Voltage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Air = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Freeze = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Chaos = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Notes = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Stream = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    Voltage = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    Air = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    Freeze = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    Chaos = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    Notes = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
                     TapsAndHolds = table.Column<long>(type: "bigint", nullable: false),
                     Jumps = table.Column<long>(type: "bigint", nullable: false),
                     Holds = table.Column<long>(type: "bigint", nullable: false),
@@ -258,18 +258,20 @@ namespace DDRScoring.Migrations
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Grade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Score = table.Column<int>(type: "int", nullable: false),
-                    PercentDP = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SurviveSeconds = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PercentDP = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
+                    SurviveSeconds = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
                     MaxCombo = table.Column<int>(type: "int", nullable: false),
                     StageAward = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PeakComboAward = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modifiers = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Machine = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlayerGuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MachineGuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     TapNoteScoresId = table.Column<long>(type: "bigint", nullable: true),
                     HoldNoteScoresId = table.Column<long>(type: "bigint", nullable: true),
                     RadarValuesId = table.Column<long>(type: "bigint", nullable: true),
-                    LifeRemainingSeconds = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LifeRemainingSeconds = table.Column<decimal>(type: "decimal(18,10)", nullable: false),
                     Disqualified = table.Column<int>(type: "int", nullable: false),
                     HighScoreListId = table.Column<long>(type: "bigint", nullable: true)
                 },
@@ -349,7 +351,7 @@ namespace DDRScoring.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HigScoreListId = table.Column<long>(type: "bigint", nullable: true),
+                    HighScoreListId = table.Column<long>(type: "bigint", nullable: true),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StepsType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SongId = table.Column<long>(type: "bigint", nullable: true)
@@ -358,8 +360,8 @@ namespace DDRScoring.Migrations
                 {
                     table.PrimaryKey("PK_Steps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Steps_HighScoreList_HigScoreListId",
-                        column: x => x.HigScoreListId,
+                        name: "FK_Steps_HighScoreList_HighScoreListId",
+                        column: x => x.HighScoreListId,
                         principalTable: "HighScoreList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -446,9 +448,9 @@ namespace DDRScoring.Migrations
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Steps_HigScoreListId",
+                name: "IX_Steps_HighScoreListId",
                 table: "Steps",
-                column: "HigScoreListId");
+                column: "HighScoreListId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Steps_SongId",

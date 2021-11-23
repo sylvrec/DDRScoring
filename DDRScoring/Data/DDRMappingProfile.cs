@@ -12,22 +12,48 @@ namespace DDRScoring.Data
         public DDRMappingProfile()
         {
             // Entities < = > DTO
-            CreateMap<Entities.Steps, DTO.Steps>()
-                .ReverseMap();
+
+            // STEP
+            CreateMap<Entities.Steps, DTO.Steps>();
+            CreateMap<DTO.Steps, Entities.Steps>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+            
+            // SONG
             CreateMap<Entities.Song, DTO.Song>()
-                .ReverseMap();
-            CreateMap<Entities.HighScore, DTO.HighScore>()
-                .ReverseMap();
-            CreateMap<Entities.HighScoreList, DTO.HighScoreList>()
-                .ReverseMap();
-            CreateMap<Entities.HoldNoteScores, DTO.HoldNoteScores>()
-                .ReverseMap();
-            CreateMap<Entities.RadarValues, DTO.RadarValues>()
-                .ReverseMap();
-            CreateMap<Entities.TapNoteScores, DTO.TapNoteScores>()
-                .ReverseMap();
-            CreateMap<Entities.CaloriesBurned, DTO.CaloriesBurned>()
-                .ReverseMap();
+                .ForMember(d => d.Dir, opt => opt.MapFrom(src => src.Name));
+            CreateMap<DTO.Song, Entities.Song>()
+                .ForMember(e => e.Id, opt => opt.Ignore())
+                .ForMember(e => e.Name, opt => opt.MapFrom(src => src.Dir));
+
+            // HighScoreList
+            CreateMap<Entities.HighScoreList, DTO.HighScoreList>();
+            CreateMap<DTO.HighScoreList, Entities.HighScoreList>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+
+            // HighScore
+            CreateMap<Entities.HighScore, DTO.HighScore>();
+            CreateMap<DTO.HighScore, Entities.HighScore>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+            
+            //HoldNoteScore
+            CreateMap<Entities.HoldNoteScores, DTO.HoldNoteScores>();
+            CreateMap<DTO.HoldNoteScores, Entities.HoldNoteScores>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+
+            // RadarValues
+            CreateMap<Entities.RadarValues, DTO.RadarValues>();
+            CreateMap<DTO.RadarValues, Entities.RadarValues>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+
+            // TapNoteScores
+            CreateMap<Entities.TapNoteScores, DTO.TapNoteScores>();
+            CreateMap<DTO.TapNoteScores, Entities.TapNoteScores>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
+            
+            // CaloriesBurned
+            CreateMap<Entities.CaloriesBurned, DTO.CaloriesBurned>();
+            CreateMap<DTO.CaloriesBurned, Entities.CaloriesBurned>()
+                .ForMember(e => e.Id, opt => opt.Ignore());
         }
     }
 }

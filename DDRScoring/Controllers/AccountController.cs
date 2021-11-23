@@ -57,13 +57,14 @@ namespace DDRScoring.Controllers
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                            new Claim("UserID", user.Id)
                         };
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:key"]));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
                             _config["Tokens:Issuer"],
-                            _config["Token:Audience"],
+                            _config["Tokens:Audience"],
                             claims,
                             signingCredentials: creds,
                             expires: DateTime.UtcNow.AddMinutes(20));

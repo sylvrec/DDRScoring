@@ -67,9 +67,9 @@ namespace DDRScoring.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("LifeRemainingSeconds")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
-                    b.Property<string>("Machine")
+                    b.Property<string>("MachineGuid")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaxCombo")
@@ -87,7 +87,13 @@ namespace DDRScoring.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PercentDP")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
+
+                    b.Property<string>("PlayerGuid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<long?>("RadarValuesId")
                         .HasColumnType("bigint");
@@ -99,7 +105,7 @@ namespace DDRScoring.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SurviveSeconds")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<long?>("TapNoteScoresId")
                         .HasColumnType("bigint");
@@ -184,16 +190,16 @@ namespace DDRScoring.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Air")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<decimal>("Chaos")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<long>("Fakes")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Freeze")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<long>("Hands")
                         .HasColumnType("bigint");
@@ -211,19 +217,19 @@ namespace DDRScoring.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Notes")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<long>("Rolls")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Stream")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.Property<long>("TapsAndHolds")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Voltage")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,10)");
 
                     b.HasKey("Id");
 
@@ -261,7 +267,7 @@ namespace DDRScoring.Migrations
                     b.Property<string>("Difficulty")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("HigScoreListId")
+                    b.Property<long?>("HighScoreListId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("SongId")
@@ -272,7 +278,7 @@ namespace DDRScoring.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HigScoreListId");
+                    b.HasIndex("HighScoreListId");
 
                     b.HasIndex("SongId");
 
@@ -567,15 +573,15 @@ namespace DDRScoring.Migrations
 
             modelBuilder.Entity("DDRScoring.Data.Entities.Steps", b =>
                 {
-                    b.HasOne("DDRScoring.Data.Entities.HighScoreList", "HigScoreList")
+                    b.HasOne("DDRScoring.Data.Entities.HighScoreList", "HighScoreList")
                         .WithMany()
-                        .HasForeignKey("HigScoreListId");
+                        .HasForeignKey("HighScoreListId");
 
                     b.HasOne("DDRScoring.Data.Entities.Song", null)
                         .WithMany("Steps")
                         .HasForeignKey("SongId");
 
-                    b.Navigation("HigScoreList");
+                    b.Navigation("HighScoreList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
