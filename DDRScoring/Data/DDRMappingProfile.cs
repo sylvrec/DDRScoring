@@ -16,14 +16,17 @@ namespace DDRScoring.Data
             // STEP
             CreateMap<Entities.Steps, DTO.Steps>();
             CreateMap<DTO.Steps, Entities.Steps>()
-                .ForMember(e => e.Id, opt => opt.Ignore());
+                .ForMember(e => e.Id, opt => opt.Ignore())
+                .ForMember(e => e.SongId, opt => opt.Ignore())
+                .ForMember(e => e.HighScoreListId, opt => opt.Ignore());
             
             // SONG
             CreateMap<Entities.Song, DTO.Song>()
                 .ForMember(d => d.Dir, opt => opt.MapFrom(src => src.Name));
             CreateMap<DTO.Song, Entities.Song>()
                 .ForMember(e => e.Id, opt => opt.Ignore())
-                .ForMember(e => e.Name, opt => opt.MapFrom(src => src.Dir));
+                .ForMember(e => e.Name, opt => opt.MapFrom(src => src.Dir))
+                .ForMember(e => e.PlayerId, opt => opt.Ignore());
 
             // HighScoreList
             CreateMap<Entities.HighScoreList, DTO.HighScoreList>();
@@ -35,7 +38,8 @@ namespace DDRScoring.Data
                 .ForMember(d => d.DateTime, opt => opt.MapFrom(src => src.DateTime.ToString()));
             CreateMap<DTO.HighScore, Entities.HighScore>()
                 .ForMember(e => e.Id, opt => opt.Ignore())
-                .ForMember(e => e.DateTime, opt => opt.MapFrom(src => DateTime.Parse(src.DateTime)));
+                .ForMember(e => e.DateTime, opt => opt.MapFrom(src => DateTime.Parse(src.DateTime)))
+                .ForMember(e => e.HighScoreListId, opt => opt.Ignore());
             
             //HoldNoteScore
             CreateMap<Entities.HoldNoteScores, DTO.HoldNoteScores>();
@@ -55,7 +59,8 @@ namespace DDRScoring.Data
             // CaloriesBurned
             CreateMap<Entities.CaloriesBurned, DTO.CaloriesBurned>();
             CreateMap<DTO.CaloriesBurned, Entities.CaloriesBurned>()
-                .ForMember(e => e.Id, opt => opt.Ignore());
+                .ForMember(e => e.Id, opt => opt.Ignore())
+                .ForMember(e => e.PlayerId, opt => opt.Ignore());
         }
     }
 }
