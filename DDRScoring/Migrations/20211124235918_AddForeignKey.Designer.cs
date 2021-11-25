@@ -4,14 +4,16 @@ using DDRScoring.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DDRScoring.Migrations
 {
     [DbContext(typeof(DDRScoringContext))]
-    partial class DDRScoringContextModelSnapshot : ModelSnapshot
+    [Migration("20211124235918_AddForeignKey")]
+    partial class AddForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,7 +268,7 @@ namespace DDRScoring.Migrations
                     b.Property<string>("Difficulty")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("HighScoreListId")
+                    b.Property<long?>("HighScoreListId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("SongId")
@@ -580,9 +582,7 @@ namespace DDRScoring.Migrations
                 {
                     b.HasOne("DDRScoring.Data.Entities.HighScoreList", "HighScoreList")
                         .WithMany()
-                        .HasForeignKey("HighScoreListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HighScoreListId");
 
                     b.HasOne("DDRScoring.Data.Entities.Song", null)
                         .WithMany("Steps")

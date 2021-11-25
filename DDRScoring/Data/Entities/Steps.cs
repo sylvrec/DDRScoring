@@ -25,5 +25,12 @@ namespace DDRScoring.Data.Entities
 
         [DataMember]
         public string StepsType { get; set; }
+
+        [ForeignKey("Song")]
+        public long SongId { get; set; }
+
+        [ForeignKey("HighScoreList")]
+        public long HighScoreListId { get; set; }
+
     }
 }

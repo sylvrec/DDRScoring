@@ -23,5 +23,8 @@ namespace DDRScoring.Data.Entities
         
         [DataMember]
         public List<Steps> Steps { get; set; }
+
+        [ForeignKey("Player")]
+        public long PlayerId { get; set; }
     }
 }

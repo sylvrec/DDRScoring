@@ -75,5 +75,8 @@ namespace DDRScoring.Data.Entities
 
 		[DataMember]
 		public int Disqualified { get; set; }
-	}
+
+		[ForeignKey("HighScoreList")]
+        public long HighScoreListId { get; set; }
+    }
 }
