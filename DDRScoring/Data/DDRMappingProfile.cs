@@ -39,7 +39,9 @@ namespace DDRScoring.Data
             CreateMap<DTO.HighScore, Entities.HighScore>()
                 .ForMember(e => e.Id, opt => opt.Ignore())
                 .ForMember(e => e.DateTime, opt => opt.MapFrom(src => DateTime.Parse(src.DateTime)))
-                .ForMember(e => e.HighScoreListId, opt => opt.Ignore());
+                .ForMember(e => e.HighScoreListId, opt => opt.Ignore())
+                .ForMember(e => e.TapNoteScoresId, opt => opt.Ignore())
+                .ForMember(e => e.RadarValuesId, opt => opt.Ignore());
             
             //HoldNoteScore
             CreateMap<Entities.HoldNoteScores, DTO.HoldNoteScores>();
