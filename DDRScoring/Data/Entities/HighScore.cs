@@ -76,7 +76,18 @@ namespace DDRScoring.Data.Entities
 		[DataMember]
 		public int Disqualified { get; set; }
 
-		[ForeignKey("HighScoreList")]
+        public HighScoreList HighScoreList { get; set; }
+
+        [ForeignKey(nameof(HighScoreList))]
         public long HighScoreListId { get; set; }
+
+		[ForeignKey(nameof(TapNoteScores))]
+        public long TapNoteScoresId { get; set; }
+
+		[ForeignKey(nameof(RadarValues))]
+        public long RadarValuesId { get; set; }
+
+		[ForeignKey(nameof(HoldNoteScores))]
+        public long HoldNoteScoreId { get; set; }
     }
 }

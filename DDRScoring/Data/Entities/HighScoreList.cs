@@ -29,5 +29,7 @@ namespace DDRScoring.Data.Entities
         [DataMember]
         public List<HighScore> HighScore { get; set; }
 
+        public Steps Steps { get; set; }
+
     }
 }
