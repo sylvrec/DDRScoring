@@ -2,6 +2,8 @@ using DDRScoring.Data;
 using DDRScoring.Data.Entities;
 using DDRScoring.Data.Repository;
 using DDRScoring.Data.Repository.impl;
+using DDRScoring.Services;
+using DDRScoring.Services.Impl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -64,6 +66,8 @@ namespace DDRScoring
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<DDRScoringSeeder>();
             AddServiceRepository(services);
+            services.AddTransient<IDTOService, DTOService>();
+            services.AddTransient<ISaveScoringService, SaveScoringService>();
             services.AddRazorPages();
             services.AddControllers().AddXmlSerializerFormatters();
         }
@@ -77,6 +81,7 @@ namespace DDRScoring
             services.AddTransient<IHighScoreListRepository, HighScoreListRepository>();
             services.AddTransient<IRadarValuesRepository, RadarValuesRepository>();
             services.AddTransient<ITapNoteScoresRepository, TapNoteScoresRepository>();
+            services.AddTransient<IHoldNoteScoresRepository, HoldNoteScoresRepository>();
             services.AddTransient<ICaloriesBurnedRepository, CaloriesBurnedRepository>();
         }
 
