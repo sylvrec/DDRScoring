@@ -19,21 +19,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-        public static IList<HighScore> MergeKey(this IList<HighScore> first, IList<HighScore> second)
-        {
-            List<HighScore> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second.Where(x => x.DateTime == c.DateTime)?.FirstOrDefault();
-                if (s != null)
-                {
-                    c.Id = s.Id;
-                    c.HighScoreListId = s.HighScoreListId;
-                    c.TapNoteScoresId = s.TapNoteScoresId;
-                    c.RadarValuesId = s.RadarValuesId;
-                }
-            });
-            return result;
-        }
     }
 }

@@ -20,20 +20,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<CaloriesBurned> MergeKey(this IList<CaloriesBurned> first, IList<CaloriesBurned> second)
-        {
-            List<CaloriesBurned> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second.Where(x => x.Date == c.Date && x.Text == c.Text)?.FirstOrDefault();
-                if (s != null)
-                {
-                    c.Id = s.Id;
-                    c.PlayerId = s.PlayerId;
-                }
-            });
-            return result;
-        }
     }
 }

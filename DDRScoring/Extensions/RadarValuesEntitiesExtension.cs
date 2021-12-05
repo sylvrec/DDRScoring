@@ -32,30 +32,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<RadarValues> MergeKey(this IList<RadarValues> first, IList<RadarValues> second)
-        {
-            List<RadarValues> result = first.ToList();
-
-            result.ForEach(c =>
-            {
-                var s = second.Where(x => x.Air == c.Air &&
-                                          x.Chaos == c.Chaos &&
-                                          x.Fakes == c.Fakes &&
-                                          x.Freeze == c.Freeze &&
-                                          x.Hands == c.Hands &&
-                                          x.Holds == c.Holds &&
-                                          x.Jumps == c.Jumps &&
-                                          x.Lifts == c.Lifts &&
-                                          x.Mines == c.Mines &&
-                                          x.Notes == c.Notes &&
-                                          x.Rolls == c.Rolls &&
-                                          x.Stream == c.Stream &&
-                                          x.TapsAndHolds == c.TapsAndHolds &&
-                                          x.Voltage == c.Voltage).FirstOrDefault();
-                if (s != null) c.Id = s.Id;
-            });
-            return result;
-        }
     }
 }

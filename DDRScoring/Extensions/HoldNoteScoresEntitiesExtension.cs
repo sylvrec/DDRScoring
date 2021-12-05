@@ -21,19 +21,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<HoldNoteScores> MergeKey(this IList<HoldNoteScores> first, IList<HoldNoteScores> second)
-        {
-            List<HoldNoteScores> result = first.ToList();
-
-            result.ForEach(c =>
-            {
-                var s = second.Where(x => x.Held == c.Held &&
-                                          x.MissedHold == c.MissedHold &&
-                                          x.LetGo == c.LetGo)?.FirstOrDefault();
-                if (s != null) c.Id = s.Id;
-            });
-            return result;
-        }
     }
 }

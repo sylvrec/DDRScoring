@@ -27,24 +27,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<TapNoteScores> MergeKey(this IList<TapNoteScores> first, IList<TapNoteScores> second)
-        {
-            List<TapNoteScores> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second.Where(x => x.W1 == c.W1 &&
-                                          x.W2 == c.W2 &&
-                                          x.W3 == c.W3 &&
-                                          x.W4 == c.W4 &&
-                                          x.W5 == c.W5 &&
-                                          x.Miss == c.Miss &&
-                                          x.HitMine == c.HitMine &&
-                                          x.CheckpointHit == c.CheckpointHit &&
-                                          x.CheckpointMiss == c.CheckpointMiss)?.FirstOrDefault();
-                if (s != null) c.Id = s.Id;
-            });
-            return result;
-        }
     }
 }

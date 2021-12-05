@@ -20,21 +20,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<Steps> MergeKey(this IList<Steps> first, IList<Steps> second)
-        {
-            List<Steps> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second.Where(x => x.Difficulty == c.Difficulty && x.StepsType == c.StepsType)?.FirstOrDefault();
-                if (s != null)
-                {
-                    c.Id = s.Id;
-                    c.SongId = s.SongId;
-                    c.HighScoreListId = s.HighScoreListId;
-                }
-            });
-            return result;
-        }
     }
 }

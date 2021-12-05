@@ -19,16 +19,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<Song> MergeKey(this IList<Song> first, IList<Song> second)
-        {
-            List<Song> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second?.Where(x => x.Name == c?.Name)?.FirstOrDefault();
-                if (s != null) c.Id = s.Id;
-            });
-            return result;
-        }
     }
 }

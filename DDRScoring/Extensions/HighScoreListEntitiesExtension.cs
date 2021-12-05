@@ -19,16 +19,5 @@ namespace DDRScoring.Extensions
                 }
             }
         }
-
-        public static IList<HighScoreList> MergeKey(this IList<HighScoreList> first, IList<HighScoreList> second)
-        {
-            List<HighScoreList> result = first.ToList();
-
-            result.ForEach(c => {
-                var s = second.Where(x => x.LastPlayed == c.LastPlayed)?.FirstOrDefault();
-                if (s != null) c.Id = s.Id;
-            });
-            return result;
-        }
     }
 }
