@@ -13,5 +13,18 @@ namespace DDRScoring.Data.Repository.impl
             : base(context)
         {
         }
+
+        public IList<Steps> StepsBySongs(IList<Song> songs)
+        {
+            List<Steps> list = new();
+
+            foreach (var song in songs)
+            {
+                var steps = _context.Steps.Where(x => x.SongId == song.Id);
+                if (steps != null && steps.Count() > 0)
+                    list.AddRange(steps);
+            }
+            return list;
+        }
     }
 }

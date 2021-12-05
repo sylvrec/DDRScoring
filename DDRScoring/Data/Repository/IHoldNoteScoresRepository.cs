@@ -9,6 +9,6 @@ namespace DDRScoring.Data.Repository
 {
     public interface IHoldNoteScoresRepository : IDDRScoringRepository<HoldNoteScores>
     {
-        
+        IList<HoldNoteScores> HoldNoteScoresByHighScore(IList<HighScore> highScores);
     }
 }

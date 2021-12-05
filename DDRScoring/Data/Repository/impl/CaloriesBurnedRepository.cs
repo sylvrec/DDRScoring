@@ -13,5 +13,10 @@ namespace DDRScoring.Data.Repository.impl
             : base(context)
         {
         }
+
+        public IList<CaloriesBurned> CaloriesBurnedByPlayer(Player player)
+        {
+            return _context.CaloriesBurned.Where(x => x.PlayerId == player.Id).ToList();
+        }
     }
 }

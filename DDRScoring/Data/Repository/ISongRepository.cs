@@ -9,6 +9,8 @@ namespace DDRScoring.Data.Repository
 {
     public interface ISongRepository : IDDRScoringRepository<Song>
     {
-        
+        IList<Song> SongByPlayer(Player player);
+
+        List<long> SongsToIds(List<Song> songs);
     }
 }

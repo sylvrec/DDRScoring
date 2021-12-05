@@ -50,7 +50,6 @@ namespace DDRScoring.Data.Repository.impl
         {
             _context.Set<T>().RemoveRange(entities);
         }
-
        
     }
 }

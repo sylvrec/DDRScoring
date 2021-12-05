@@ -13,5 +13,18 @@ namespace DDRScoring.Data.Repository.impl
             : base(context)
         {
         }
+
+        public IList<HoldNoteScores> HoldNoteScoresByHighScore(IList<HighScore> highScores)
+        {
+            List<HoldNoteScores> list = new List<HoldNoteScores>();
+
+            foreach (var highScore in highScores)
+            {
+                var holdNoteScores = _context.HoldNoteScores.Where(x => x.Id == highScore.HoldNoteScoreId).FirstOrDefault();
+                if (holdNoteScores != null)
+                    list.Add(holdNoteScores);
+            }
+            return list;
+        }
     }
 }

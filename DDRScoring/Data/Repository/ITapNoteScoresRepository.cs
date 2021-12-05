@@ -9,6 +9,6 @@ namespace DDRScoring.Data.Repository
 {
     public interface ITapNoteScoresRepository : IDDRScoringRepository<TapNoteScores>
     {
-        
+        IList<TapNoteScores> TapNoteScoresByHighScore(IList<HighScore> highScores);
     }
 }

@@ -9,6 +9,6 @@ namespace DDRScoring.Data.Repository
 {
     public interface IRadarValuesRepository : IDDRScoringRepository<RadarValues>
     {
-        
+        IList<RadarValues> RadarValuesByHighScore(IList<HighScore> highScores);
     }
 }

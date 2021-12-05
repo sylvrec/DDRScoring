@@ -9,6 +9,6 @@ namespace DDRScoring.Data.Repository
 {
     public interface ICaloriesBurnedRepository : IDDRScoringRepository<CaloriesBurned>
     {
-        
+        IList<CaloriesBurned> CaloriesBurnedByPlayer(Player player);
     }
 }

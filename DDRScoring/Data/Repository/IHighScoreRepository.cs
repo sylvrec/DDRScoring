@@ -9,6 +9,13 @@ namespace DDRScoring.Data.Repository
 {
     public interface IHighScoreRepository : IDDRScoringRepository<HighScore>
     {
-        
+        /// <summary>
+        /// HighScoreByHighScoreList
+        /// 
+        /// Recupere tous les highScores de tous les highScoreList.
+        /// </summary>
+        /// <param name="highScoreLists"></param>
+        /// <returns>List de highscore</returns>
+        IList<HighScore> HighScoresByHighScoreList(IList<HighScoreList> highScoreLists);
     }
 }
