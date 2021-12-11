@@ -30,24 +30,30 @@ namespace DDRScoring.Controllers
     {
         private readonly ILogger<DDRFileController> _logger;
         private readonly ISaveScoringService _serviceSaveScoring;
+        private readonly IDTOService _dtoService;
         private readonly UserManager<StoreUser> _userManger;
 
         public DDRFileController(ILogger<DDRFileController> logger,
                                  ISaveScoringService serviceSaveScoring,
-                                 IMapper mapper,
+                                 IDTOService dtoService,
                                  UserManager<StoreUser> userManger)
         {
             _logger = logger;
             _serviceSaveScoring = serviceSaveScoring;
+            _dtoService = dtoService;
             _userManger = userManger;
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]Stats stats)
+        public async Task<IActionResult> PostAsync([FromBody]Data.DTO.Stats stats)
         {
             _logger.LogDebug(stats.ToString());
-            var result = await _serviceSaveScoring.SaveAndMergeAsync(User, stats);
+            var userAuthentified = await _userManger.GetUserAsync(User);
+            if (userAuthentified == null) return BadRequest("User unknow");
+            var player = _dtoService.DTOStatsToEntitiesPlayer(stats, userAuthentified);
+            var result = await _serviceSaveScoring.SaveAndMergeAsync(player);
+            if (result == -1) return BadRequest();
             return Ok();
         }
     }

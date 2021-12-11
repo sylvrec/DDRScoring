@@ -1,4 +1,5 @@
 ﻿using DDRScoring.Data.DTO;
+using DDRScoring.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,6 @@ namespace DDRScoring.Services
 {
     public interface IDTOService
     {
-        List<Song> StatsToGetSongs();
-        List<Steps> StatsToGetSteps();
-        List<HighScoreList> StatsToGetHighScoreList();
-        List<HighScore> StatsToGetHighScore();
-        List<TapNoteScores> StatsToGetTapNoteScores();
-        List<HoldNoteScores> StatsToGetHoldNoteScores();
-        List<RadarValues> StatsToGetRadarValues();
+        Data.Entities.Player DTOStatsToEntitiesPlayer(Data.DTO.Stats stats, StoreUser user);
     }
 }

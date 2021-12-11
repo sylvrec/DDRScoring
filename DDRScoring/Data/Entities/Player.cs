@@ -14,7 +14,6 @@ namespace DDRScoring.Data.Entities
     [DataContract]
     public class Player
     {
-        [DataMember]
         [Key]
         public long Id { get; set; }
 

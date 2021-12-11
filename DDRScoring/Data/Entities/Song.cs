@@ -26,5 +26,7 @@ namespace DDRScoring.Data.Entities
 
         [ForeignKey(nameof(Player))]
         public long PlayerId { get; set; }
+
+        public Player Player { get; set; }
     }
 }

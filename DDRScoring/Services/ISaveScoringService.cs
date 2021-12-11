@@ -1,4 +1,5 @@
 ﻿using DDRScoring.Data.DTO;
+using DDRScoring.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace DDRScoring.Services
         /// </summary>
         /// <param name="stats">Stats</param>
         /// <returns>Nombre de nouveau score engristre</returns>
-        Task<int> SaveAndMergeAsync(ClaimsPrincipal userAuthentified, Stats stats);
+        Task<int> SaveAndMergeAsync(Player player);
     }
 }

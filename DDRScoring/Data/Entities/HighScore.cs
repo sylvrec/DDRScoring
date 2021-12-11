@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DDRScoring.Data.Entities
 {
-	[Table("HighScores")]
+	[Table("HighScore")]
 	[DataContract]
     public class HighScore
-    {
+	{
 		[DataMember]
 		[Key]
         public long Id { get; set; }

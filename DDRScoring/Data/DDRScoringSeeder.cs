@@ -1,4 +1,5 @@
 ﻿using DDRScoring.Data.Entities;
+using DDRScoring.Data.Repository.impl;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -38,6 +39,8 @@ namespace DDRScoring.Data
                 {
                     throw new InvalidOperationException("Could not create new user in seeder");
                 }
+                _ctx.Players.Add(new Player() { Account = user });
+                _ctx.SaveChanges();
             }
 
         }

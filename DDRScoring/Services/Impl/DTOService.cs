@@ -1,7 +1,10 @@
-﻿using DDRScoring.Data.DTO;
+﻿using AutoMapper;
+using DDRScoring.Data.DTO;
+using DDRScoring.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,72 +12,21 @@ namespace DDRScoring.Services.Impl
 {
     public class DTOService : IDTOService
     {
-        private readonly Stats _stats;
+        private readonly IMapper _mapper;
 
-        public DTOService(Stats stats)
+        public DTOService(IMapper mapper)
         {
-            _stats = stats;
+            _mapper = mapper;
         }
 
-        public List<Song> StatsToGetSongs()
+        public Data.Entities.Player DTOStatsToEntitiesPlayer(Data.DTO.Stats stats, StoreUser user)
         {
-            if (_stats != null && _stats.SongScores != null && _stats.SongScores.Song != null)
-                return _stats.SongScores.Song;
-            return new List<Song>();
+            Data.Entities.Player player = new Data.Entities.Player();
+            player.Account = user;
+            player.Songs = _mapper.Map<List<Data.DTO.Song>, List<Data.Entities.Song>>(stats.SongScores.Song);
+            player.CaloriesBurneds = _mapper.Map<List<Data.DTO.CaloriesBurned>, List<Data.Entities.CaloriesBurned>>(stats.CalorieData.CaloriesBurned);
+            return player;
         }
 
-        public List<Steps> StatsToGetSteps()
-        {
-            List<Steps> steps = new List<Steps>();
-
-            if (_stats != null && _stats.SongScores != null && _stats.SongScores.Song != null)
-                _stats.SongScores.Song.ForEach(s => steps.AddRange(s.Steps));
-            return steps;
-        }
-
-        public List<HighScoreList> StatsToGetHighScoreList()
-        {
-            List<HighScoreList> highScoreLists = new List<HighScoreList>();
-
-            var steps = StatsToGetSteps();
-            steps.ForEach(s => highScoreLists.Add(s.HighScoreList));
-            return highScoreLists;
-        }
-
-        public List<HighScore> StatsToGetHighScore()
-        {
-            List<HighScore> highScore = new List<HighScore>();
-
-            var highScoreList = StatsToGetHighScoreList();
-            highScoreList.ForEach(s => highScore.AddRange(s.HighScore));
-            return highScore;
-        }
-
-        public List<TapNoteScores> StatsToGetTapNoteScores()
-        {
-            List<TapNoteScores> tapNoteScores = new List<TapNoteScores>();
-
-            var highScore = StatsToGetHighScore();
-            highScore.ForEach(s => tapNoteScores.Add(s.TapNoteScores));
-            return tapNoteScores;
-        }
-
-        public List<HoldNoteScores> StatsToGetHoldNoteScores()
-        {
-            List<HoldNoteScores> holdNoteScores = new List<HoldNoteScores>();
-
-            var highScore = StatsToGetHighScore();
-            highScore.ForEach(s => holdNoteScores.Add(s.HoldNoteScores));
-            return holdNoteScores;
-        }
-
-        public List<RadarValues> StatsToGetRadarValues()
-        {
-            List<RadarValues> radarValues = new List<RadarValues>();
-
-            var highScore = StatsToGetHighScore();
-            highScore.ForEach(s => radarValues.Add(s.RadarValues));
-            return radarValues;
-        }
     }
 }
