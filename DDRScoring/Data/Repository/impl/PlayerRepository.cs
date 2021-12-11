@@ -32,5 +32,13 @@ namespace DDRScoring.Data.Repository.impl
             if (string.IsNullOrEmpty(email)) return null;
             return _context.Players.Where(x => x.Account.Email == email).First();
         }
+
+        public IList<Player> AllPlayerWithSong(Song song)
+        {
+            return _context.Song.Where(x => x.Name == song.Name)
+                                        .Include(x => x.Player)
+                                        .Select(x => x.Player)
+                                        .ToList();
+        }
     }
 }

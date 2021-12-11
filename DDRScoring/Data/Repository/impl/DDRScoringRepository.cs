@@ -36,7 +36,7 @@ namespace DDRScoring.Data.Repository.impl
             return _context.Set<T>().ToList();
         }
 
-        public T GetByID(int id)
+        public T GetByID(long id)
         {
             return _context.Set<T>().Find(id);
         }

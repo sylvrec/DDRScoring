@@ -9,7 +9,7 @@ namespace DDRScoring.Data.Repository
 {
     public interface IDDRScoringRepository<T> where T : class
     {
-        T GetByID(int id);
+        T GetByID(long id);
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
         void Add(T entity);
