@@ -1,4 +1,6 @@
-﻿using DDRScoring.Data.DTO;
+﻿using AutoMapper;
+using DDRScoring.Data;
+using DDRScoring.Data.DTO;
 using DDRScoring.Services.Impl;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -27,21 +29,15 @@ namespace TestDDRScoring.Services
         }
 
         [TestMethod]
-        public void TestStatsToGetSongs()
+        public void TestDTOtoEntitiesStats()
         {
-            var dtoService = new DTOService(_stats);
-            var songs = dtoService.StatsToGetSongs();
-            Assert.IsNotNull(songs);
-            Assert.AreEqual(10, songs.Count);
-        }
-
-        [TestMethod]
-        public void TestStatsToGetSteps()
-        {
-            var dtoService = new DTOService(_stats);
-            var steps = dtoService.StatsToGetSteps();
-            Assert.IsNotNull(steps);
-            Assert.AreEqual(18, steps.Count);
+            //var dtoService = new DTOService(mapper);
+            //var player = dtoService.DTOStatsToEntitiesPlayer(_stats, null);
+            //Assert.IsNotNull(player);
+            //Assert.AreEqual(_stats.SongScores.Song.Count, player.Songs.Count);
+            //Assert.AreEqual(_stats.SongScores.Song[0].Dir, player.Songs[0].Name);
+            //Assert.AreEqual(_stats.CalorieData.CaloriesBurned.Count, player.CaloriesBurneds.Count);
+            //Assert.AreEqual(_stats.CalorieData.CaloriesBurned[0].Date, player.CaloriesBurneds[0].Date);
         }
     }
 }
