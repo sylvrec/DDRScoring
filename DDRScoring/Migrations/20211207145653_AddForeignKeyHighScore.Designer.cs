@@ -4,14 +4,16 @@ using DDRScoring.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DDRScoring.Migrations
 {
     [DbContext(typeof(DDRScoringContext))]
-    partial class DDRScoringContextModelSnapshot : ModelSnapshot
+    [Migration("20211207145653_AddForeignKeyHighScore")]
+    partial class AddForeignKeyHighScore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,7 +121,7 @@ namespace DDRScoring.Migrations
 
                     b.HasIndex("TapNoteScoresId");
 
-                    b.ToTable("HighScore");
+                    b.ToTable("HighScores");
                 });
 
             modelBuilder.Entity("DDRScoring.Data.Entities.HighScoreList", b =>
@@ -525,13 +527,11 @@ namespace DDRScoring.Migrations
 
             modelBuilder.Entity("DDRScoring.Data.Entities.CaloriesBurned", b =>
                 {
-                    b.HasOne("DDRScoring.Data.Entities.Player", "Player")
+                    b.HasOne("DDRScoring.Data.Entities.Player", null)
                         .WithMany("CaloriesBurneds")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("DDRScoring.Data.Entities.HighScore", b =>
